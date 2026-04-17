@@ -1,5 +1,5 @@
 # ========== STAGE 1 : Build ==========
-FROM node:20-alpine AS builder
+FROM node:20.12-alpine3.19 AS builder
 WORKDIR /app
 
 # Dépendances d'abord (pour profiter du cache Docker)
@@ -13,7 +13,7 @@ COPY . .
 RUN npm prune --production
 
 # ========== STAGE 2 : Production ==========
-FROM node:20-alpine AS production
+FROM node:20.12-alpine3.19 AS production
 WORKDIR /app
 
 # Création d'un utilisateur "non-root" (sans privilège) pour la sécurité
